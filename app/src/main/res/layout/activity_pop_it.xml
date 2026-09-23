@@ -5,8 +5,20 @@
     android:id="@+id/pop_it_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A67C52"
     tools:context=".PopItActivity">
+
+    <!-- Universal Background Image -->
+    <ImageView
+        android:id="@+id/bgUniversalPopIt"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Background"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_32_01_am__1_" />
 
     <!-- Header / Tombol Kembali -->
     <ImageButton
@@ -24,7 +36,7 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pop It"
+        android:text="Pop It Toy"
         android:textColor="@android:color/white"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -33,16 +45,94 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/btnBack" />
 
-    <!-- Konten Game / Gambar Pop It -->
+    <!-- Pop It Game Toy (Main Board Image) -->
     <ImageView
         android:id="@+id/imgPopIt"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:contentDescription="Pop It Toy"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:contentDescription="Pop It Board"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_32_01_am__1_" />
+        app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_42_43_am" />
+
+    <!-- Buletan-buletan Pop It -->
+    <View
+        android:id="@+id/bubble"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/bg_bubble"
+        android:clickable="true"
+        android:focusable="true"
+        tools:layout_editor_absoluteX="260dp"
+        tools:layout_editor_absoluteY="452dp" />
+
+    <View
+        android:id="@+id/bubble5"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/bg_bubble"
+        android:clickable="true"
+        android:focusable="true"
+        tools:layout_editor_absoluteX="241dp"
+        tools:layout_editor_absoluteY="408dp" />
+
+    <View
+        android:id="@+id/bubble6"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/bg_bubble"
+        android:clickable="true"
+        android:focusable="true"
+        tools:layout_editor_absoluteX="128dp"
+        tools:layout_editor_absoluteY="470dp" />
+
+    <View
+        android:id="@+id/bubble7"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/bg_bubble"
+        android:clickable="true"
+        android:focusable="true"
+        tools:layout_editor_absoluteX="172dp"
+        tools:layout_editor_absoluteY="460dp" />
+
+    <View
+        android:id="@+id/bubble10"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/bg_bubble"
+        android:clickable="true"
+        android:focusable="true"
+        tools:layout_editor_absoluteX="216dp"
+        tools:layout_editor_absoluteY="452dp" />
+
+    <View
+        android:id="@+id/bubble11"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/bg_bubble"
+        android:clickable="true"
+        android:focusable="true"
+        tools:layout_editor_absoluteX="197dp"
+        tools:layout_editor_absoluteY="408dp" />
+
+    <View
+        android:id="@+id/bubble16"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/bg_bubble"
+        android:clickable="true"
+        android:focusable="true"
+        tools:layout_editor_absoluteX="145dp"
+        tools:layout_editor_absoluteY="416dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

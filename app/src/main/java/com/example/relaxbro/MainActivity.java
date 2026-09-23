@@ -3,7 +3,6 @@ package com.example.relaxbro;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,24 +24,13 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // 1. Inisialisasi komponen dari layout (activity_main.xml)
+        // 1. Inisialisasi Pop It Toy Button
         ImageView btnPopIt = findViewById(R.id.btnPopIt);
-        ImageView btnFidget2 = findViewById(R.id.btnFidget2);
-        ImageView btnFidget3 = findViewById(R.id.btnFidget3);
 
-        // 2. Set listener klik untuk pindah ke PopItActivity
+        // 2. Klik Pop It Toy Button untuk berpindah ke PopItActivity
         btnPopIt.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, PopItActivity.class);
             startActivity(intent);
         });
-
-        // Listener untuk fidget lainnya (bisa kamu ganti dengan Activity/Fragment lain nantinya)
-        btnFidget2.setOnClickListener(v ->
-                Toast.makeText(this, "Fidget 2 diklik", Toast.LENGTH_SHORT).show()
-        );
-
-        btnFidget3.setOnClickListener(v ->
-                Toast.makeText(this, "Fidget 3 diklik", Toast.LENGTH_SHORT).show()
-        );
     }
 }
