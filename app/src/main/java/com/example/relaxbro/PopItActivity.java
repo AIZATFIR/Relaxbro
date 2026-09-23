@@ -62,8 +62,8 @@ public class PopItActivity extends AppCompatActivity {
             // Jika view berupa container (misal GridLayout/LinearLayout), cari anak di dalamnya secara rekursif
             if (view instanceof ViewGroup) {
                 setupBubbleListeners((ViewGroup) view);
-            } else {
-                // Pasang listener jika ID-nya mengandung kata 'bubble' atau clickable
+            } else if (view.getId() != View.NO_ID) {
+                // Pasang listener jika ID-nya mengandung kata 'bubble'
                 String resName = getResources().getResourceEntryName(view.getId());
                 if (resName != null && resName.startsWith("bubble")) {
                     view.setOnClickListener(this::playPopAndAnimate);
