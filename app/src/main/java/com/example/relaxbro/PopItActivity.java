@@ -13,10 +13,15 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class PopItActivity extends AppCompatActivity {
 
     private SoundPool soundPool;
-    private int popSoundId;
+    private final List<Integer> soundList = new ArrayList<>();
+    private final Random random = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +35,7 @@ public class PopItActivity extends AppCompatActivity {
             return insets;
         });
 
-        // 1. Inisialisasi SoundPool untuk memutar efek suara .wav secara instant
+        // 1. Inisialisasi SoundPool untuk memutar efek suara secara instant
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_GAME)
                 .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
@@ -41,14 +46,15 @@ public class PopItActivity extends AppCompatActivity {
                 .setAudioAttributes(audioAttributes)
                 .build();
 
-        // 2. Load file audio res/raw/popsound.wav
-        popSoundId = soundPool.load(this, R.raw.popsound, 1);
+        // 2. Load variasi efek suara mp3 dari res/raw/
+        soundList.add(soundPool.load(this, R.raw.minecraft_pickup, 1));
+        soundList.add(soundPool.load(this, R.raw.pop_cat_meme, 1));
 
         // 3. Logic tombol kembali ke beranda
         ImageButton btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(v -> finish());
 
-        // 4. Tracking otomatis SELURUH buletan Pop It di dalam layout (pop_it_root / container)
+        // 4. Tracking otomatis SELURUH buletan Pop It di dalam layout
         ViewGroup rootLayout = findViewById(R.id.pop_it_root);
         if (rootLayout != null) {
             setupBubbleListeners(rootLayout);
@@ -59,11 +65,9 @@ public class PopItActivity extends AppCompatActivity {
         for (int i = 0; i < parent.getChildCount(); i++) {
             View view = parent.getChildAt(i);
             
-            // Jika view berupa container (misal GridLayout/LinearLayout), cari anak di dalamnya secara rekursif
             if (view instanceof ViewGroup) {
                 setupBubbleListeners((ViewGroup) view);
             } else if (view.getId() != View.NO_ID) {
-                // Pasang listener jika ID-nya mengandung kata 'bubble'
                 String resName = getResources().getResourceEntryName(view.getId());
                 if (resName != null && resName.startsWith("bubble")) {
                     view.setOnClickListener(this::playPopAndAnimate);
@@ -73,9 +77,10 @@ public class PopItActivity extends AppCompatActivity {
     }
 
     private void playPopAndAnimate(View view) {
-        // Memutar suara pop
-        if (popSoundId != 0 && soundPool != null) {
-            soundPool.play(popSoundId, 1.0f, 1.0f, 0, 0, 1.0f);
+        // Memutar salah satu suara secara ACAK (Random Cycle) dari pilihan suara mp3
+        if (!soundList.isEmpty() && soundPool != null) {
+            int randomSoundId = soundList.get(random.nextInt(soundList.size()));
+            soundPool.play(randomSoundId, 1.0f, 1.0f, 0, 0, 1.0f);
         }
 
         // Efek animasi "ngepop" (mengecil lalu kembali normal)

@@ -8,6 +8,9 @@
     tools:context=".PopItActivity">
 
     <!-- Universal Background Image -->
+
+    <!-- Header / Tombol Kembali -->
+
     <ImageView
         android:id="@+id/bgUniversalPopIt"
         android:layout_width="0dp"
@@ -16,11 +19,11 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_32_01_am__1_" />
-
-    <!-- Header / Tombol Kembali -->
 
     <ImageButton
         android:id="@+id/btnBack"
@@ -52,6 +55,7 @@
 
     <!-- Buletan-buletan Pop It transparan yang TERKUNCI PERSIS ke imgPopIt -->
     <!-- Baris Atas (3 Buletan) -->
+
     <ImageView
         android:id="@+id/imgPopIt"
         android:layout_width="280dp"
@@ -59,10 +63,10 @@
         android:contentDescription="Pop It Board"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        app:layout_constraintVertical_bias="0.559"
+        app:layout_constraintVertical_bias="0.339"
         app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_42_43_am" />
 
     <View
