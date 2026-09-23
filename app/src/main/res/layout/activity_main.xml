@@ -26,7 +26,7 @@
         android:id="@+id/btnPopIt"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:clickable="true"
         android:contentDescription="Pop It Toy"
         android:focusable="true"
@@ -38,8 +38,6 @@
         app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_32_01_am__1_" />
 
     <!-- Item 2: Fidget Toy 2 -->
-
-    <!-- Item 3: Fidget Toy 3 -->
     <ImageView
         android:id="@+id/btnFidget2"
         android:layout_width="120dp"
@@ -52,14 +50,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btnPopIt"
         app:layout_constraintTop_toTopOf="@id/btnPopIt"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_42_43_am" />
 
+    <!-- Item 3: Fidget Toy 3 -->
     <ImageView
         android:id="@+id/btnFidget3"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:clickable="true"
         android:contentDescription="Fidget 3"
         android:focusable="true"
@@ -69,21 +67,32 @@
         app:layout_constraintTop_toBottomOf="@id/btnPopIt"
         app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_50_09_am" />
 
-    <Button
-        android:id="@+id/btnPindah"
-        android:layout_width="176dp"
-        android:layout_height="57dp"
-        android:text="main piano"
-        tools:layout_editor_absoluteX="122dp"
-        tools:layout_editor_absoluteY="658dp" />
-
+    <!-- Gambar Piano -->
     <ImageView
         android:id="@+id/beruang"
-        android:layout_width="327dp"
-        android:layout_height="310dp"
+        android:layout_width="280dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Piano Bear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnFidget3"
         app:srcCompat="@drawable/real_bgt" />
+
+    <!-- Tombol Play Piano di bawah Gambar Piano -->
+    <Button
+        android:id="@+id/btnPlayPiano"
+        android:layout_width="180dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#5D3A1A"
+        android:text="PLAY"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:cornerRadius="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/beruang" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

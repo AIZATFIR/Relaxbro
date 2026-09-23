@@ -1,6 +1,7 @@
 package com.example.relaxbro;
 
 import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
@@ -38,24 +39,27 @@ public class PianoActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_piano);
 
+        // Arahkan tombol volume HP langsung mengontrol volume Musik/Media agar suara piano maksimal
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.piano_root), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        // 1. Inisialisasi SoundPool
+        // 1. Inisialisasi SoundPool dengan USAGE_MEDIA & CONTENT_TYPE_MUSIC (suara jernih & kencang)
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_GAME)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                 .build();
 
         soundPool = new SoundPool.Builder()
-                .setMaxStreams(10)
+                .setMaxStreams(16) // 16 stream bersamaan agar tuts tidak terputus mendadak
                 .setAudioAttributes(audioAttributes)
                 .build();
 
-        // 2. Load file audio .wav (note_do, re, mi, fa, sol, la, si, do_tinggi)
+        // 2. Load file nada piano .wav (note_do, re, mi, fa, sol, la, si, do_tinggi)
         loadPianoSounds();
 
         // 3. Tombol Kembali
@@ -77,7 +81,7 @@ public class PianoActivity extends AppCompatActivity {
     }
 
     private void loadPianoSounds() {
-        // Load file .wav dari folder res/raw
+        // Load file .wav murni nada piano dari folder res/raw
         int soundDo = loadRawSound("note_do");
         if (soundDo == 0) {
             soundDo = loadRawSound("do");
@@ -130,10 +134,11 @@ public class PianoActivity extends AppCompatActivity {
     private void playKeySound(int keyId, View view) {
         KeySoundInfo soundInfo = keySoundMap.get(keyId);
         if (soundInfo != null && soundInfo.soundId != 0 && soundPool != null) {
-            soundPool.play(soundInfo.soundId, 1.0f, 1.0f, 0, 0, soundInfo.pitch);
+            // Memutar dengan volume penuh (1.0f, 1.0f) dan priority 1
+            soundPool.play(soundInfo.soundId, 1.0f, 1.0f, 1, 0, soundInfo.pitch);
         }
 
-        // Animasi saat tuts ditekan
+        // Animasi halus saat tuts ditekan
         view.animate()
                 .scaleY(0.90f)
                 .setDuration(60)
