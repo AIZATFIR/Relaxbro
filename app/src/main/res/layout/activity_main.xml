@@ -5,15 +5,31 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#A67C52">
 
-    <TextView
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_32_01_am__1_"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_42_43_am"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="93dp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_50_09_am"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-196dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
