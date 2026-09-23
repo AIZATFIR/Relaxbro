@@ -15,6 +15,9 @@
             android:name=".PopItActivity"
             android:exported="false" />
         <activity
+            android:name=".PianoActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
