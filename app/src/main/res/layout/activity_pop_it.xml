@@ -21,11 +21,14 @@
         app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_32_01_am__1_" />
 
     <!-- Header / Tombol Kembali -->
+
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Kembali"
         android:src="@android:drawable/ic_menu_revert"
