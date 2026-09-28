@@ -5,92 +5,86 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#A67C52"
     tools:context=".MainActivity">
+
+    <!-- Universal Wood Background -->
+    <ImageView
+        android:id="@+id/bgUniversal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Background"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_32_01_am__1_" />
+
+    <!-- Title Banner Header -->
+    <ImageView
+        android:id="@+id/imgTitleHeader"
+        android:layout_width="260dp"
+        android:layout_height="90dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="Title Banner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_50_09_am" />
 
     <TextView
         android:id="@+id/tvBerandaTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/hachi_maru_pop"
         android:text="Pilih Fidget Toy"
         android:textColor="@android:color/white"
-        android:textSize="24sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/imgTitleHeader" />
 
-    <!-- Item 1: Pop It Toy -->
+    <!-- Item 1: Pop It Toy (Main Toy) -->
     <ImageView
         android:id="@+id/btnPopIt"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
         android:clickable="true"
         android:contentDescription="Pop It Toy"
         android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintEnd_toStartOf="@id/btnFidget2"
-        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvBerandaTitle"
-        app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_32_01_am__1_" />
-
-    <!-- Item 2: Fidget Toy 2 -->
-    <ImageView
-        android:id="@+id/btnFidget2"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:clickable="true"
-        android:contentDescription="Fidget 2"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintBottom_toBottomOf="@id/btnPopIt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnPopIt"
-        app:layout_constraintTop_toTopOf="@id/btnPopIt"
         app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_42_43_am" />
 
-    <!-- Item 3: Fidget Toy 3 -->
-    <ImageView
-        android:id="@+id/btnFidget3"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="16dp"
-        android:clickable="true"
-        android:contentDescription="Fidget 3"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnPopIt"
-        app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_50_09_am" />
-
-    <!-- Gambar Piano -->
+    <!-- Item 2: Piano Bear -->
     <ImageView
         android:id="@+id/beruang"
-        android:layout_width="280dp"
-        android:layout_height="220dp"
+        android:layout_width="220dp"
+        android:layout_height="160dp"
         android:layout_marginTop="16dp"
         android:contentDescription="Piano Bear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnFidget3"
+        app:layout_constraintTop_toBottomOf="@+id/btnPopIt"
         app:srcCompat="@drawable/real_bgt" />
 
-    <!-- Tombol Play Piano di bawah Gambar Piano -->
+    <!-- Tombol Play Piano -->
     <Button
         android:id="@+id/btnPlayPiano"
-        android:layout_width="180dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#5D3A1A"
-        android:text="PLAY"
+        android:text="PLAY PIANO"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textStyle="bold"
-        app:cornerRadius="27dp"
+        app:cornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/beruang" />
