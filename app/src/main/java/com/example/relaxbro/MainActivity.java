@@ -25,18 +25,13 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        // 1. Tombol Pop It (btnPopIt dan btnFidget2) -> Buka PopItActivity
+        // 1. Tombol Mainkan Pop It -> Buka PopItActivity
         ImageView btnPopIt = findViewById(R.id.btnPopIt);
         if (btnPopIt != null) {
             btnPopIt.setOnClickListener(v -> openPopItActivity());
         }
 
-        ImageView btnFidget2 = findViewById(R.id.btnFidget2);
-        if (btnFidget2 != null) {
-            btnFidget2.setOnClickListener(v -> openPopItActivity());
-        }
-
-        // 2. Tombol Play Piano dan Gambar Piano -> Buka PianoActivity
+        // 2. Tombol Play Piano & Gambar Piano -> Buka PianoActivity
         Button btnPlayPiano = findViewById(R.id.btnPlayPiano);
         if (btnPlayPiano != null) {
             btnPlayPiano.setOnClickListener(v -> openPianoActivity());
