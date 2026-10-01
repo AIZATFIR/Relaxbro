@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Terapkan Kustomisasi Warna User
+        applyTheme();
+
         // 1. Tombol Mainkan Pop It -> Buka PopItActivity
         ImageView btnPopIt = findViewById(R.id.btnPopIt);
         if (btnPopIt != null) {
@@ -41,6 +45,18 @@ public class MainActivity extends AppCompatActivity {
         if (imgPiano != null) {
             imgPiano.setOnClickListener(v -> openPianoActivity());
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Update warna jika berubah setelah dari halaman lain
+        applyTheme();
+    }
+
+    private void applyTheme() {
+        TextView tvTitle = findViewById(R.id.tvBerandaTitle);
+        UserPreferences.applyCustomization(this, findViewById(R.id.main), tvTitle);
     }
 
     private void openPopItActivity() {

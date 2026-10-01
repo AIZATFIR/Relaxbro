@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +35,10 @@ public class PopItActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Terapkan Kustomisasi Warna User
+        TextView tvTitle = findViewById(R.id.tvTitle);
+        UserPreferences.applyCustomization(this, findViewById(R.id.pop_it_root), tvTitle);
 
         // 1. Inisialisasi SoundPool untuk memutar efek suara secara instant
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
