@@ -51,9 +51,13 @@ public class PopItActivity extends AppCompatActivity {
                 .setAudioAttributes(audioAttributes)
                 .build();
 
-        // 2. Load variasi efek suara mp3 dari res/raw/
-        soundList.add(soundPool.load(this, R.raw.minecraft_pickup, 1));
-        soundList.add(soundPool.load(this, R.raw.pop_cat_meme, 1));
+        // 2. Load variasi efek suara mp3/wav dari res/raw/ secara aman
+        loadSoundIfExists("minecraft_pickup");
+        loadSoundIfExists("pop_cat_meme");
+        loadSoundIfExists("popsound");
+        if (soundList.isEmpty()) {
+            loadSoundIfExists("note_do");
+        }
 
         // 3. Logic tombol kembali ke beranda
         ImageButton btnBack = findViewById(R.id.btnBack);
@@ -63,6 +67,16 @@ public class PopItActivity extends AppCompatActivity {
         ViewGroup rootLayout = findViewById(R.id.pop_it_root);
         if (rootLayout != null) {
             setupBubbleListeners(rootLayout);
+        }
+    }
+
+    private void loadSoundIfExists(String resName) {
+        int resId = getResources().getIdentifier(resName, "raw", getPackageName());
+        if (resId != 0 && soundPool != null) {
+            int soundId = soundPool.load(this, resId, 1);
+            if (soundId != 0) {
+                soundList.add(soundId);
+            }
         }
     }
 

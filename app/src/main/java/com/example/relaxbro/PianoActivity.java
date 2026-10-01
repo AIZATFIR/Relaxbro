@@ -3,6 +3,7 @@ package com.example.relaxbro;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.media.audiofx.LoudnessEnhancer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -19,6 +20,7 @@ import java.util.Map;
 public class PianoActivity extends AppCompatActivity {
 
     private SoundPool soundPool;
+    private LoudnessEnhancer loudnessEnhancer;
 
     // Map untuk menyimpan Sound ID dan Pitch untuk setiap tombol piano
     private final Map<Integer, KeySoundInfo> keySoundMap = new HashMap<>();
@@ -39,8 +41,15 @@ public class PianoActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_piano);
 
-        // Arahkan tombol volume HP langsung mengontrol volume Musik/Media agar suara piano maksimal
+        // Arahkan tombol volume HP mengontrol volume Musik/Media
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+        // Set volume media sistem ke tingkat Maksimal (100%)
+        AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+        if (audioManager != null) {
+            int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, 0);
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.piano_root), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -48,27 +57,36 @@ public class PianoActivity extends AppCompatActivity {
             return insets;
         });
 
-        // 1. Inisialisasi SoundPool dengan USAGE_MEDIA & CONTENT_TYPE_MUSIC (suara jernih & kencang)
+        // 1. Inisialisasi SoundPool dengan USAGE_MEDIA & CONTENT_TYPE_MUSIC
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_MEDIA)
                 .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                 .build();
 
         soundPool = new SoundPool.Builder()
-                .setMaxStreams(16) // 16 stream bersamaan agar tuts tidak terputus mendadak
+                .setMaxStreams(16)
                 .setAudioAttributes(audioAttributes)
                 .build();
 
-        // 2. Load file nada piano .wav (note_do, re, mi, fa, sol, la, si, do_tinggi)
+        // 2. Terapkan Booster Suara 200% (+600 mB / +6 dB gain boost)
+        try {
+            loudnessEnhancer = new LoudnessEnhancer(0);
+            loudnessEnhancer.setTargetGain(600); // 600 mB = +6dB (200% volume boost)
+            loudnessEnhancer.setEnabled(true);
+        } catch (Exception ignored) {
+            // Jika ekosistem audio perangkat tidak mendukung hardware FX, SoundPool tetap berjalan dengan volume maksimal
+        }
+
+        // 3. Load file nada piano .wav (note_do, re, mi, fa, sol, la, si, do_tinggi)
         loadPianoSounds();
 
-        // 3. Tombol Kembali
+        // 4. Tombol Kembali
         ImageButton btnBack = findViewById(R.id.btnBack);
         if (btnBack != null) {
             btnBack.setOnClickListener(v -> finish());
         }
 
-        // 4. Hubungkan event click ke setiap tuts piano
+        // 5. Hubungkan event click ke setiap tuts piano
         setupPianoKeyListeners();
     }
 
@@ -81,7 +99,6 @@ public class PianoActivity extends AppCompatActivity {
     }
 
     private void loadPianoSounds() {
-        // Load file .wav murni nada piano dari folder res/raw
         int soundDo = loadRawSound("note_do");
         if (soundDo == 0) {
             soundDo = loadRawSound("do");
@@ -94,7 +111,6 @@ public class PianoActivity extends AppCompatActivity {
         int soundSi = loadRawSound("si");
         int soundDoTinggi = loadRawSound("do_tinggi");
 
-        // Semitone multiplier (1/12 octave) untuk tuts hitam (sharps)
         final float sharpPitch = 1.0595f;
 
         // Pemetaan Tombol Tuts Putih (Do, Re, Mi, Fa, Sol, La, Si, Do Tinggi)
@@ -134,7 +150,6 @@ public class PianoActivity extends AppCompatActivity {
     private void playKeySound(int keyId, View view) {
         KeySoundInfo soundInfo = keySoundMap.get(keyId);
         if (soundInfo != null && soundInfo.soundId != 0 && soundPool != null) {
-            // Memutar dengan volume penuh (1.0f, 1.0f) dan priority 1
             soundPool.play(soundInfo.soundId, 1.0f, 1.0f, 1, 0, soundInfo.pitch);
         }
 
@@ -149,6 +164,13 @@ public class PianoActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (loudnessEnhancer != null) {
+            try {
+                loudnessEnhancer.release();
+            } catch (Exception ignored) {
+            }
+            loudnessEnhancer = null;
+        }
         if (soundPool != null) {
             soundPool.release();
             soundPool = null;
