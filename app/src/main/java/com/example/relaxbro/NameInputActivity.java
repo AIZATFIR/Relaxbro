@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,13 @@ public class NameInputActivity extends AppCompatActivity {
         etName = findViewById(R.id.etName);
         Button btnMulai = findViewById(R.id.btnMulai);
 
+        // Pre-fill nama dari database lokal jika sudah pernah diisi sebelumnya
+        String savedUser = UserPreferences.getCurrentUsername(this);
+        if (etName != null && !savedUser.equalsIgnoreCase("Guest")) {
+            etName.setText(savedUser);
+            etName.setSelection(savedUser.length());
+        }
+
         if (btnMulai != null) {
             btnMulai.setOnClickListener(v -> submitName());
         }
@@ -51,6 +59,10 @@ public class NameInputActivity extends AppCompatActivity {
             etName.setError("Maksimal 20 karakter!");
             return;
         }
+
+        // Simpan ke SharedPreferences & Tampilkan Toast
+        UserPreferences.saveCurrentUsername(this, name);
+        Toast.makeText(this, "Selamat datang, " + name + "!", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(NameInputActivity.this, MainActivity.class);
         intent.putExtra(EXTRA_USERNAME, name);
