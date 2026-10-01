@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Relaxbro</string>
+    <string name="main_greeting">Halo, %1$s! Pilih Fidget Toy</string>
+    <string name="tv_username">Pemain: %1$s</string>
 </resources>

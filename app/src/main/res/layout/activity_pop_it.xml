@@ -8,9 +8,6 @@
     tools:context=".PopItActivity">
 
     <!-- Universal Background Image -->
-
-    <!-- Header / Tombol Kembali -->
-
     <ImageView
         android:id="@+id/bgUniversalPopIt"
         android:layout_width="0dp"
@@ -25,18 +22,33 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_32_01_am__1_" />
 
+    <!-- Header Username -->
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/hachi_maru_pop"
+        android:maxLines="1"
+        android:text="@string/tv_username"
+        android:textColor="#FFFDD0"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_margin="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Kembali"
         android:src="@android:drawable/ic_menu_revert"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tvUsername" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -52,10 +64,6 @@
         app:layout_constraintTop_toTopOf="@id/btnBack" />
 
     <!-- Pop It Game Toy (Main Board Image) -->
-
-    <!-- Buletan-buletan Pop It transparan yang TERKUNCI PERSIS ke imgPopIt -->
-    <!-- Baris Atas (3 Buletan) -->
-
     <ImageView
         android:id="@+id/imgPopIt"
         android:layout_width="280dp"
@@ -69,6 +77,7 @@
         app:layout_constraintVertical_bias="0.339"
         app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_42_43_am" />
 
+    <!-- Buletan-buletan Pop It -->
     <View
         android:id="@+id/bubble16"
         android:layout_width="48dp"
@@ -80,8 +89,6 @@
         android:focusable="true"
         app:layout_constraintStart_toStartOf="@id/imgPopIt"
         app:layout_constraintTop_toTopOf="@id/imgPopIt" />
-
-    <!-- Baris Bawah (4 Buletan) -->
 
     <View
         android:id="@+id/bubble11"

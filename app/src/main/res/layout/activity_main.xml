@@ -41,8 +41,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:ellipsize="end"
         android:fontFamily="@font/hachi_maru_pop"
-        android:text="Pilih Fidget Toy"
+        android:maxLines="2"
+        android:text="@string/main_greeting"
         android:textColor="@android:color/white"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -101,7 +103,8 @@
         android:ems="10"
         android:inputType="text"
         android:text="Masukkan Username..."
-        tools:layout_editor_absoluteX="108dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="567dp" />
 
     <Button
@@ -122,26 +125,29 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="35dp"
         android:backgroundTint="#964B00"
         android:text="Coklat Classic"
-        tools:layout_editor_absoluteX="136dp"
-        tools:layout_editor_absoluteY="648dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/bgUniversal"
+        tools:layout_editor_absoluteX="136dp" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#191970"
         android:text="Biru Tenang"
-        tools:layout_editor_absoluteX="274dp"
-        tools:layout_editor_absoluteY="648dp"
-        android:backgroundTint="#191970"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        tools:layout_editor_absoluteY="648dp" />
 
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
-        tools:layout_editor_absoluteX="164dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="601dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

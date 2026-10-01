@@ -6,20 +6,36 @@
     android:layout_height="match_parent"
     android:background="@drawable/bgbgbg">
 
+    <!-- Header Username -->
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/hachi_maru_pop"
+        android:maxLines="1"
+        android:text="@string/tv_username"
+        android:textColor="#FFFDD0"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <!-- Tombol Kembali -->
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="8dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="Kembali"
         android:padding="8dp"
         android:src="@android:drawable/ic_menu_revert"
         app:tint="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/tvUsername" />
 
     <TextView
         android:id="@+id/tvPianoTitle"

@@ -7,8 +7,10 @@ import android.media.audiofx.LoudnessEnhancer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -57,6 +59,17 @@ public class PianoActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Read username extra with fallback
+        String username = getIntent().getStringExtra(NameInputActivity.EXTRA_USERNAME);
+        if (username == null || username.trim().isEmpty()) {
+            username = "Teman";
+        }
+
+        TextView tvUsername = findViewById(R.id.tvUsername);
+        if (tvUsername != null) {
+            tvUsername.setText(getString(R.string.tv_username, username));
+        }
+
         // 1. Inisialisasi SoundPool dengan USAGE_MEDIA & CONTENT_TYPE_MUSIC
         AudioAttributes audioAttributes = new AudioAttributes.Builder()
                 .setUsage(AudioAttributes.USAGE_MEDIA)
@@ -80,11 +93,18 @@ public class PianoActivity extends AppCompatActivity {
         // 3. Load file nada piano .wav (note_do, re, mi, fa, sol, la, si, do_tinggi)
         loadPianoSounds();
 
-        // 4. Tombol Kembali
+        // 4. Tombol Kembali & Back Callback
         ImageButton btnBack = findViewById(R.id.btnBack);
         if (btnBack != null) {
             btnBack.setOnClickListener(v -> finish());
         }
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finish();
+            }
+        });
 
         // 5. Hubungkan event click ke setiap tuts piano
         setupPianoKeyListeners();

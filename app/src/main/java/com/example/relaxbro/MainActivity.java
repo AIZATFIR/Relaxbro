@@ -14,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String username;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,18 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Read username extra with fallback
+        username = getIntent().getStringExtra(NameInputActivity.EXTRA_USERNAME);
+        if (username == null || username.trim().isEmpty()) {
+            username = "Teman";
+        }
+
+        // Display formatted greeting
+        TextView tvTitle = findViewById(R.id.tvBerandaTitle);
+        if (tvTitle != null) {
+            tvTitle.setText(getString(R.string.main_greeting, username));
+        }
 
         // Terapkan Kustomisasi Warna User
         applyTheme();
@@ -61,11 +75,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void openPopItActivity() {
         Intent intent = new Intent(MainActivity.this, PopItActivity.class);
+        intent.putExtra(NameInputActivity.EXTRA_USERNAME, username);
         startActivity(intent);
     }
 
     private void openPianoActivity() {
         Intent intent = new Intent(MainActivity.this, PianoActivity.class);
+        intent.putExtra(NameInputActivity.EXTRA_USERNAME, username);
         startActivity(intent);
     }
 }

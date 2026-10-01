@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -36,6 +37,17 @@ public class PopItActivity extends AppCompatActivity {
             return insets;
         });
 
+        // Read username extra with fallback
+        String username = getIntent().getStringExtra(NameInputActivity.EXTRA_USERNAME);
+        if (username == null || username.trim().isEmpty()) {
+            username = "Teman";
+        }
+
+        TextView tvUsername = findViewById(R.id.tvUsername);
+        if (tvUsername != null) {
+            tvUsername.setText(getString(R.string.tv_username, username));
+        }
+
         // Terapkan Kustomisasi Warna User
         TextView tvTitle = findViewById(R.id.tvTitle);
         UserPreferences.applyCustomization(this, findViewById(R.id.pop_it_root), tvTitle);
@@ -59,9 +71,18 @@ public class PopItActivity extends AppCompatActivity {
             loadSoundIfExists("note_do");
         }
 
-        // 3. Logic tombol kembali ke beranda
+        // 3. Logic tombol kembali ke beranda & OnBackPressedCallback
         ImageButton btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(v -> finish());
+        if (btnBack != null) {
+            btnBack.setOnClickListener(v -> finish());
+        }
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finish();
+            }
+        });
 
         // 4. Tracking otomatis SELURUH buletan Pop It di dalam layout
         ViewGroup rootLayout = findViewById(R.id.pop_it_root);
