@@ -8,6 +8,9 @@
     tools:context=".MainActivity">
 
     <!-- Universal Wood Background -->
+
+    <!-- Title Banner Header -->
+
     <ImageView
         android:id="@+id/bgUniversal"
         android:layout_width="0dp"
@@ -16,11 +19,12 @@
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/chatgpt_image_sep_23__2026__09_32_01_am__1_" />
 
-    <!-- Title Banner Header -->
     <ImageView
         android:id="@+id/imgTitleHeader"
         android:layout_width="260dp"
@@ -88,5 +92,56 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/beruang" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.5"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Masukkan Username..."
+        tools:layout_editor_absoluteX="108dp"
+        tools:layout_editor_absoluteY="567dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#9CAF88"
+        android:text="Hijau Sage"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.948" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#964B00"
+        android:text="Coklat Classic"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="648dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Biru Tenang"
+        tools:layout_editor_absoluteX="274dp"
+        tools:layout_editor_absoluteY="648dp"
+        android:backgroundTint="#191970"/>
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        tools:layout_editor_absoluteX="164dp"
+        tools:layout_editor_absoluteY="601dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
